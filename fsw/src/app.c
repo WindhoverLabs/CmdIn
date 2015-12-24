@@ -317,7 +317,6 @@ void CI_ProcessSchMsg(void)
 	MsgId = CFE_SB_GetMsgId(CI_AppData.MsgPtr);
     switch (MsgId)
     {
-
     	case CI_READ_CMD_MID:
     	{
     		CI_ReadUpLink();
@@ -586,6 +585,10 @@ void CI_ReadUpLink(void)
 											  *(long *)(CI_AppData.IngestBuffer + 4) );
 						}
 					}
+
+					MsgSize = recv(CI_AppData.Config->Channel[i].Socket,
+									   (char *)&CI_AppData.IngestBuffer,
+									   sizeof(CI_AppData.IngestBuffer), MSG_DONTWAIT);
 				}
 
 				CFE_ES_PerfLogExit(CI_SOCKET_RCV_PERF_ID);
