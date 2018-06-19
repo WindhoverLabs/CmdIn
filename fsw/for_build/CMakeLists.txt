@@ -16,12 +16,12 @@ include_directories(${OSAL_INC_DIRS})
 include_directories(${PSP_INC_DIRS})
 	
 # Build application
-add_library(${APP_FILE} SHARED ${APP_SRC} ${APP_CUSTOM_SRC})
+add_app(${APP_FILE} SHARED ${APP_SRC} ${APP_CUSTOM_SRC})
 
 add_subdirectory(../unit_test unit_test)
 
 # Build tables
-add_library(ci_config_tbl STATIC ${TABLE_DIR}/ci_config.c)
+add_app(ci_config_tbl STATIC ${TABLE_DIR}/ci_config.c)
 set_target_properties(ci_config_tbl PROPERTIES PREFIX "" SUFFIX ".tbl")
 
 #add_subdirectory(../unit_test unit_test)
